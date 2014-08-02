@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -ex
+# Name of the container and session.
+NAME="`basename $0`"
+
+error() {
+    xmessage "$1"
+    exit 1
+}
+
+init() {
+    tmux has -t "$NAME" 2>/dev/null && error "Session $NAME is already running." || true
+}
+
+load_config() {
+    local cfg_path="/etc/conf.d/$NAME"
+    [[ -f "$cfg_path" ]] && . "$cfg_path"
+
+    [[ "$APP" ]] || error "No app specified."
+    [[ "$IMAGE" ]] || error "No image specified."
+    DOCKER_USER="${DOCKER_USER:-kagome}"
+    MOUNTS="${MOUNTS}"
+    SOUND="${SOUND:-n}"
+    WIDTH="${WIDTH:-1920}"
+    HEIGHT="${HEIGHT:-1080}"
+}
+
+run_xephyr() {
+    tmux new -d -s "$NAME" "\
+        Xephyr :$X_NUM -screen '${WIDTH}x${HEIGHT}' -dpi 96; \
+        sudo -u '$DOCKER_USER' docker-rm -f '$NAME'; \
+        tmux kill-session -t '$NAME'"
+}
+
+run_container() {
+    tmux neww -d -t "$NAME": "\
+        sudo -u '$DOCKER_USER' docker-run -n '$NAME' -i '$IMAGE' -r '$APP' -x $X_NUM -s '$SOUND' $MOUNTS"
+}
+
+# Starting point.
+init
+load_config
+X_NUM=$((RANDOM + 100))
+[[ -e "/tmp/.X11-unix/X$X_NUM" ]] && error "X server :$X_NUM already exists."
+run_xephyr
+sleep 1  # Wait for Xephyr to be spawned
+run_container

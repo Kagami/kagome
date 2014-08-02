@@ -1,0 +1,51 @@
+#!/bin/bash
+
+set -e
+
+error() {
+    echo "$1" >&2
+    exit 1
+}
+
+usage() {
+    echo "Usage: `basename $0` -n <NAME> -i <IMAGE> [-r <RUN-ARGS>] [-x <X-NUM>] [-s <y|n>] [MOUNT]..." >&2
+    exit 1
+}
+
+RUN_ARGS=""
+X_FILE=""
+SOUND="n"
+
+while getopts ":n:i:r:x:s:" o; do
+    case "$o" in
+    n)
+        NAME="$OPTARG";;
+    i)
+        IMAGE="$OPTARG";;
+    r)
+        RUN_ARGS="$OPTARG";;
+    x)
+        (( OPTARG < 100 )) && error "Bad X number."
+        X_FILE="/tmp/.X11-unix/X$OPTARG"
+        [[ -e "$X_FILE" ]] || error "Bad X number."
+        ;;
+    s)
+        SOUND="$OPTARG";;
+    *)
+        usage;;
+    esac
+done
+[[ -z "$NAME" ]] && error "No name specified."
+[[ -z "$IMAGE" ]] && error "No image specified."
+shift $((OPTIND - 1))
+
+MOUNTS="$*"
+declare -a DOCKER_ARGS
+for mount in $MOUNTS; do
+    [[ "$mount" =~ ^/home/kagome/[-A-Za-z0-9]+/[-A-Za-z0-9/]+:/[-A-Za-z0-9/.]*(:ro)?$ ]] || error "Bad mount."
+    DOCKER_ARGS+=("-v $mount")
+done
+[[ "$X_FILE" ]] && DOCKER_ARGS+=("-v $X_FILE:/tmp/.X11-unix/X0")
+[[ "$SOUND" == "y" ]] && DOCKER_ARGS+=("-v /dev/snd:/dev/snd --privileged=true")
+
+exec docker run --name "$NAME" -i -t --rm ${DOCKER_ARGS[@]} "$IMAGE" $RUN_ARGS
