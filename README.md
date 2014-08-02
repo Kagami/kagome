@@ -1,12 +1,12 @@
-# kagome — application cage
+## kagome — application cage
 
-## What is this all about?
+### What is this all about?
 
 `kagome` is a collection of scripts helps to run GUI programs in Linux in isolated environments.
 
 As for now this repository doesn't provide installer or similar product-ready installation guide. It's just an example on how to make your desktop more secure by running each program in their own isolate environments. Though this may change in future.
 
-## Project motivation or why should I care?
+### Project motivation or why should I care?
 
 Indeed, why the hell someone should invent crazy methods to run programs? Err, docker? And anyway, *Linux doesn't have viruses*, does it? I'm already overprotected just by running Ubuntu!
 
@@ -26,7 +26,7 @@ If even this doesn't hesitate you then maybe you should read [Nothing to hide](h
 
 *TODO*: Add more links to security holes to make you scared.
 
-## Proposal or what do you suggest?
+### Proposal or what do you suggest?
 
 So one of the solution of running extremely buggy software along with the sensitive data at the same machihe is to use sandboxes. This idea is not new though virtualization field and especially the lightweight containers gained broad attention recently and make things much easier:
 * [Namespaces support](http://lwn.net/Articles/531114/) merged into Linux mainline
@@ -36,7 +36,7 @@ So one of the solution of running extremely buggy software along with the sensit
 
 The main concept of `kagome` is to run all your applications in separate lightweight Linux containers with separate filesystem and X server.
 
-## Other concepts and their criticism
+### Other concepts and their criticism
 
 ##### [subuser](https://github.com/subuser-security/subuser)
 
@@ -77,7 +77,7 @@ Qubes OS tries to solve both of with problems though it's still very expirementa
 * [The three approaches to computer security](http://theinvisiblethings.blogspot.ru/2008/09/three-approaches-to-computer-security.html)
 * [Containers & Docker: How Secure Are They?](http://blog.docker.com/2013/08/containers-docker-how-secure-are-they/)
 
-## Design overview or how much secure is it?
+### Design overview or how much secure is it?
 
 * Docker as for container implementation and images ecosystem
 * Separate user for interaction with Docker via wrapper scripts
@@ -98,7 +98,7 @@ Possible security flaws (see also TODO section):
 
 *TODO*: Graphical overview.
 
-## Usage
+### Usage
 
 1. Install the tmux, Xephyr and Docker.
 
@@ -145,7 +145,7 @@ Possible security flaws (see also TODO section):
 
 *TODO*: Write human-friendly CLI utility for managing containers configs.
 
-## Enhancing security tips
+### Enhancing security tips
 
 * Use different containers for each task (Work, Home, Tmp, etc.)
 * [Disable inter-container communication](https://docs.docker.com/articles/networking/#communication-between-containers) in Docker
@@ -155,7 +155,7 @@ Possible security flaws (see also TODO section):
 * Optional: remove you main user from the sudo/admin/wheel groups and login as root only from the virtual console
 * <http://wiki.centos.org/HowTos/OS_Protection>
 
-## TODO
+### TODO
 
 * Option for disabling/configuring container network
 * Fix access to sound card
@@ -166,7 +166,7 @@ Possible security flaws (see also TODO section):
 * `kagome` installer and proper configuration
 * More documentation and links
 
-## License
+### License
 
 kagome - application cage
 
