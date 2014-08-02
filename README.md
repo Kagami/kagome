@@ -68,9 +68,9 @@ Though it's perfectly fine and good to use grsecurity/PaX-enabled kernel. Just d
 
 Let's think about virtualization for a moment: why do we need containers when we already have much more robust KVM/XEN/VirtualBox hypervisors? The answer is one word: *overhead*. You just can't run dozens of KVM guests on an average desktop box while there could be hundreds of containers without much troubles.
 
-Even more, how do you plan to support/upgrade/fix operating systems in all of your guests? If you eventually come with vagrant & puppet/chef it's still a lof of hard work. And I don't think that anyone will be excited to spend so much effort just into single desktop.
+Even more, how do you plan to support/upgrade/fix operating systems in all of your guests? If you eventually come with the Vagrant & Puppet/Chef it's still a lof of hard work. And I don't think what anyone will be excited to spend so much effort just into single desktop.
 
-Qubes OS tries to solve both of with problems though it's still very expiremental and you can't install it into your current system (it's separate Linux distribution). Although I don't know much details about implementation (e.g. how do they solve memory overhead because [deduplication seems to be disabled](https://groups.google.com/d/msg/qubes-devel/tfMk_g7Y1tQ/iSLQ2jNyZH8J)) I think this is very promising OS and definetely going to investigate it further.
+Qubes OS tries to solve both of this problems though it's still very expiremental and you can't install it into your current system (it's separate Linux distribution). Although I don't know much details about implementation (e.g. how do they solve memory overhead because [deduplication seems to be disabled](https://groups.google.com/d/msg/qubes-devel/tfMk_g7Y1tQ/iSLQ2jNyZH8J)) I think this is very promising OS and definetely going to investigate into it further.
 
 ##### See also
 
