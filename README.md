@@ -2,7 +2,7 @@
 
 ### What is this all about?
 
-`kagome` is a collection of scripts helps to run GUI programs in Linux in isolated environments.
+`kagome` is a collection of scripts helps to run programs in Linux in isolated environments.
 
 As for now this repository doesn't provide installer or similar product-ready installation guide. It's just an example on how to make your desktop more secure by running each program in their own isolate environments. Though this may change in future.
 
@@ -54,7 +54,7 @@ Someone may suggest SELinux or other MAC implementation. Indeed, isn't such mech
 * Very complex for the end user, you should know a lot about the system *and* about the program you want to run
 * Even if you have good and tuned SELinux rules for all your applications it's still unclear on how to make several instances of the same application (e.g. different browser profiles) isolated from each other
 
-On the other hand if the assume that container isolation is unbreakable then we may don't care about application details at all: just run it inside the sandbox and do you work. In other words: with SELinux it's a lot of work for each application, with VM/container you just run inside whatever you want.
+On the other hand if we assume for a moment that container isolation is unbreakable then we may don't care about application details at all: just run it inside the sandbox and do you work. In other words: with SELinux it's a lot of work for each application, with VM/container you just run inside whatever you want.
 
 By the way we could use MAC rules for Docker/LXC to make it harder to break container isolation.
 
