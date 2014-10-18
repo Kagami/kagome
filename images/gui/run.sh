@@ -3,7 +3,7 @@
 set -e
 
 USER="user"
-APP="$1"
+APP="$*"
 
 sudo_passwd="`pwgen -s -N1 20`"
 echo "$USER:$sudo_passwd" | chpasswd
@@ -21,7 +21,7 @@ sudo -u "$USER" -i <<EOF
 openbox-session &>openbox.log &
 $APP &>gui.log &
 sleep 2
-setxkbmap -layout us,ru -option grp:alt_shift_toggle,ctrl:swapcaps,compose:rwin
+setxkbmap -layout us,ru -option grp:toggle,ctrl:swapcaps,compose:rwin
 xset r rate 300 50
 EOF
 exec sudo -u "$USER" -i

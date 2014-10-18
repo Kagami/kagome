@@ -1,6 +1,6 @@
 FROM cli-base
 
-ENV TERM xterm-256color
 RUN chsh -s /bin/zsh user
 ADD run.sh /
+ENV TERM xterm-256color
 ENTRYPOINT ["/run.sh"]
