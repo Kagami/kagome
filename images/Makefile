@@ -15,7 +15,7 @@ update-base:
 	$(DOCKER_PULL) ubuntu:latest
 
 clean:
-	-$(DOCKER_IMAGES) | awk '/<none>/{print $$3}' | xargs $(DOCKER_RMI)
+	-$(DOCKER_IMAGES) | awk '/<none>/{print $$3}' | xargs -r $(DOCKER_RMI)
 
 build-all: $(SUBDIRS)
 
