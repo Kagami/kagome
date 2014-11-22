@@ -14,9 +14,11 @@ usage() {
 
 RUN_ARGS=""
 X_FILE=""
+MOUNTS=""
+PORTS=""
 SOUND="n"
 
-while getopts ":n:i:r:x:s:" o; do
+while getopts ":n:i:r:x:s:m:p:" o; do
     case "$o" in
     n)
         NAME="$OPTARG";;
@@ -25,27 +27,37 @@ while getopts ":n:i:r:x:s:" o; do
     r)
         RUN_ARGS="$OPTARG";;
     x)
-        (( OPTARG < 100 )) && error "Bad X number."
+        (( OPTARG >= 100 )) || error "Bad X number."
         X_FILE="/tmp/.X11-unix/X$OPTARG"
         [[ -e "$X_FILE" ]] || error "Bad X number."
         ;;
     s)
         SOUND="$OPTARG";;
+    m)
+        MOUNTS="$OPTARG";;
+    p)
+        PORTS="$OPTARG";;
     *)
         usage;;
     esac
 done
 [[ -z "$NAME" ]] && error "No name specified."
 [[ -z "$IMAGE" ]] && error "No image specified."
-shift $((OPTIND - 1))
 
-MOUNTS="$*"
 declare -a DOCKER_ARGS
 for mount in $MOUNTS; do
-    [[ "$mount" =~ ^/home/kagome/[-A-Za-z0-9]+/[-A-Za-z0-9/]+:/[-A-Za-z0-9/.]*(:ro)?$ ]] || error "Bad mount."
+    [[ "$mount" =~ ^(/media/hdd/downloads|/home/kagome/[-A-Za-z0-9]+/[-A-Za-z0-9/]+):/[-A-Za-z0-9/.]*(:ro)?$ ]] || error "Bad mount."
     DOCKER_ARGS+=("-v $mount")
 done
+for port in $PORTS; do
+    [[ "$port" =~ ^[0-9]+(:[0-9]+)?$ ]] || error "Bad port."
+    DOCKER_ARGS+=("-p $port")
+done
 [[ "$X_FILE" ]] && DOCKER_ARGS+=("-v $X_FILE:/tmp/.X11-unix/X0")
-[[ "$SOUND" == "y" ]] && DOCKER_ARGS+=("-v /dev/snd:/dev/snd --privileged=true")
+if [[ "$SOUND" == "y" ]]; then
+    # XXX: Bash can't export declare -a array to subshell so create one big arg.
+    cd /tmp  # Workaround for find
+    DOCKER_ARGS+=( $(find /dev/snd -type c -exec echo '--device {}:{}' \;) )
+fi
 
 exec docker run --name "$NAME" -i -t --rm ${DOCKER_ARGS[@]} "$IMAGE" $RUN_ARGS
