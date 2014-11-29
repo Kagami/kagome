@@ -50,8 +50,8 @@ for mount in $MOUNTS; do
     DOCKER_ARGS+=("-v $mount")
 done
 for port in $PORTS; do
-    [[ "$port" =~ ^[0-9]+:[0-9]+$ ]] || error "Bad port."
-    DOCKER_ARGS+=("-p 172.17.42.1:$port")
+    [[ "$port" =~ ^((([0-9]{1,3}\.){1,3}[0-9]{1,3}:)?([0-9]+)?:)?[0-9]+$ ]] || error "Bad port."
+    DOCKER_ARGS+=("-p $port")
 done
 [[ "$X_FILE" ]] && DOCKER_ARGS+=("-v $X_FILE:/tmp/.X11-unix/X0")
 if [[ "$SOUND" == "y" ]]; then
