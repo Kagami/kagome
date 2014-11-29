@@ -50,13 +50,13 @@ for mount in $MOUNTS; do
     DOCKER_ARGS+=("-v $mount")
 done
 for port in $PORTS; do
-    [[ "$port" =~ ^[0-9]+(:[0-9]+)?$ ]] || error "Bad port."
-    DOCKER_ARGS+=("-p $port")
+    [[ "$port" =~ ^[0-9]+:[0-9]+$ ]] || error "Bad port."
+    DOCKER_ARGS+=("-p 172.17.42.1:$port")
 done
 [[ "$X_FILE" ]] && DOCKER_ARGS+=("-v $X_FILE:/tmp/.X11-unix/X0")
 if [[ "$SOUND" == "y" ]]; then
     # XXX: Bash can't export declare -a array to subshell so create one big arg.
-    cd /tmp  # Workaround for find
+    cd /tmp  # Forkaround for find
     DOCKER_ARGS+=( $(find /dev/snd -type c -exec echo '--device {}:{}' \;) )
 fi
 
