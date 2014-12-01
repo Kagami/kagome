@@ -1,6 +1,6 @@
 FROM base
 
-RUN apt-get install -y build-essential strace man git vim zsh tmux curl netcat software-properties-common python
+RUN apt-get install -y build-essential strace man git vim zsh tmux curl netcat software-properties-common python htop psmisc
 RUN curl -s https://static.rust-lang.org/rustup.sh | sudo sh
 RUN apt-add-repository -y ppa:chris-lea/node.js && apt-get update && apt-get install -y nodejs
 # pygrapviz dev
