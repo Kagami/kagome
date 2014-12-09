@@ -120,9 +120,11 @@ Possible security flaws (see also TODO section):
   $ visudo
   ...
   user ALL=(kagome) NOPASSWD: /usr/local/bin/docker-run
-  user ALL=(kagome) NOPASSWD: /usr/local/bin/docker-rm
-  user ALL=(kagome) NOPASSWD: /usr/local/bin/docker-inspect-ip
-  user ALL=(kagome) NOPASSWD: /usr/local/bin/docker-build
+  user ALL=(kagome) NOPASSWD: /usr/bin/docker build *
+  user ALL=(kagome) NOPASSWD: /usr/bin/docker images
+  user ALL=(kagome) NOPASSWD: /usr/bin/docker pull *
+  user ALL=(kagome) NOPASSWD: /usr/bin/docker rmi *
+  user ALL=(kagome) NOPASSWD: /usr/bin/docker rm *
   ...
   ```
 

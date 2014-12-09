@@ -33,7 +33,7 @@ run_xephyr() {
     [[ "$RESIZEABLE" == "y" ]] && xephyr_args="-resizeable" || xephyr_args="-screen '${WIDTH}x${HEIGHT}' -dpi 96"
     tmux new -d -s "$NAME" "\
         Xephyr :$X_NUM -nolisten tcp $xephyr_args;\
-        sudo -u '$DOCKER_USER' docker-rm -f '$NAME';\
+        sudo -u '$DOCKER_USER' docker rm -f '$NAME';\
         tmux kill-session -t '$NAME'"
 }
 
