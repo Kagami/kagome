@@ -41,23 +41,29 @@ while getopts ":n:i:r:x:s:m:p:" o; do
         usage;;
     esac
 done
+
 [[ -z "$NAME" ]] && error "No name specified."
 [[ -z "$IMAGE" ]] && error "No image specified."
 
 declare -a DOCKER_ARGS
-for mount in $MOUNTS; do
-    [[ "$mount" =~ ^(/media/hdd/downloads|/home/kagome/[-A-Za-z0-9]+/[-A-Za-z0-9/]+):/[-A-Za-z0-9/.]*(:ro)?$ ]] || error "Bad mount."
-    DOCKER_ARGS+=("-v $mount")
-done
-for port in $PORTS; do
-    [[ "$port" =~ ^((([0-9]{1,3}\.){1,3}[0-9]{1,3}:)?([0-9]+)?:)?[0-9]+$ ]] || error "Bad port."
-    DOCKER_ARGS+=("-p $port")
-done
+
 [[ "$X_FILE" ]] && DOCKER_ARGS+=("-v $X_FILE:/tmp/.X11-unix/X0")
+
 if [[ "$SOUND" == "y" ]]; then
     # XXX: Bash can't export declare -a array to subshell so create one big arg.
     cd /tmp  # Forkaround for find
     DOCKER_ARGS+=( $(find /dev/snd -type c -exec echo '--device {}:{}' \;) )
 fi
 
+for mount in $MOUNTS; do
+    [[ "$mount" =~ ^(/media/hdd/downloads|/home/kagome/[-A-Za-z0-9]+/[-A-Za-z0-9/]+):/[-A-Za-z0-9/.]*(:ro)?$ ]] || error "Bad mount."
+    DOCKER_ARGS+=("-v $mount")
+done
+
+for port in $PORTS; do
+    [[ "$port" =~ ^((([0-9]{1,3}\.){1,3}[0-9]{1,3}:)?([0-9]+)?:)?[0-9]+$ ]] || error "Bad port."
+    DOCKER_ARGS+=("-p $port")
+done
+
+set -x
 exec docker run --name "$NAME" -i -t --rm ${DOCKER_ARGS[@]} "$IMAGE" $RUN_ARGS

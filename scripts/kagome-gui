@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 # Name of the container and session.
 NAME="`basename $0`"
 
@@ -32,13 +32,14 @@ run_xephyr() {
     local xephyr_args
     [[ "$RESIZEABLE" == "y" ]] && xephyr_args="-resizeable" || xephyr_args="-screen '${WIDTH}x${HEIGHT}' -dpi 96"
     tmux new -d -s "$NAME" "\
+        set -x;\
         Xephyr :$X_NUM -nolisten tcp $xephyr_args;\
         sudo -u '$DOCKER_USER' docker rm -f '$NAME';\
         tmux kill-session -t '$NAME'"
 }
 
 run_container() {
-    tmux neww -d -t "$NAME": "sudo -u '$DOCKER_USER' docker-run -n '$NAME' -i '$IMAGE' -r '$APP' -x $X_NUM -s '$SOUND' -p '$PORTS' -m '$MOUNTS'"
+    tmux neww -d -t "$NAME": "set -x;sudo -u '$DOCKER_USER' docker-run -n '$NAME' -i '$IMAGE' -r '$APP' -x $X_NUM -s '$SOUND' -p '$PORTS' -m '$MOUNTS'"
 }
 
 # Starting point.
