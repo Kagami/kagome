@@ -162,6 +162,7 @@ Possible security flaws (see also TODO section):
 * ~~Fix access to sound card~~
 * ~~Fix alsa "device or resource busy" issue~~ Support for PulseAudio?
 * Option for disabling/configuring container network (firewall?)
+* [Support for OpenGL?](http://habrahabr.ru/post/240509/#comment_8079117)
 * Leverage user namespaces
 * Leverage SELinux/AppArmor policies for Docker and Xephyr
 * More documentation and links
