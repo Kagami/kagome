@@ -159,14 +159,15 @@ Possible security flaws (see also TODO section):
 
 ### TODO
 
-* Option for disabling/configuring container network
-* Fix access to sound card
+* ~~Fix access to sound card~~
+* ~~Fix alsa "device or resource busy" issue~~ Support for PulseAudio?
+* Option for disabling/configuring container network (firewall?)
 * Leverage user namespaces
 * Leverage SELinux/AppArmor policies for Docker and Xephyr
-* Fix alsa "device or resource busy" issue
-* X primary selection/clipboard buffer sharing between multiple Xephyr instances
-* `kagome` installer and proper configuration
 * More documentation and links
+* Installer and proper configuration
+* `kagome` utility
+* Share popular kagome images via Docker registry
 
 ### License
 
