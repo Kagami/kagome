@@ -3,8 +3,8 @@ DOCKER_BUILD=sudo -u "$(DOCKER_USER)" docker build
 DOCKER_IMAGES=sudo -u "$(DOCKER_USER)" docker images
 DOCKER_PULL=sudo -u "$(DOCKER_USER)" docker pull
 DOCKER_RMI=sudo -u "$(DOCKER_USER)" docker rmi
-SUBDIRS=base gui-base cli-base cli gui gui-nonfree
-.PHONY: $(SUBDIRS)
+IMAGES=base cli-base cli gui-base gui gui-nonfree
+.PHONY: $(IMAGES)
 
 default:
 	@echo "Run \`make all' to build all images."
@@ -17,7 +17,7 @@ update-base:
 clean:
 	-$(DOCKER_IMAGES) | awk '/<none>/{print $$3}' | xargs -r $(DOCKER_RMI)
 
-build-all: $(SUBDIRS)
+build-all: $(IMAGES)
 
-$(SUBDIRS):
+$(IMAGES):
 	cd "$@" && $(DOCKER_BUILD) --no-cache --force-rm -t "$@" .
