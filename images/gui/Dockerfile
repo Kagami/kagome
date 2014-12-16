@@ -28,6 +28,7 @@ RUN echo '\
     sudo -u user tee /home/user/.config/openbox/rc.xml
 RUN sudo -u user mkdir -p /home/user/.config/gajim/ /home/user/.local/share/gajim/
 RUN sudo -u user mkdir -p /home/user/.config/transmission/
+RUN sudo -u user mkdir -p /home/user/.config/PyBitmessage/
 RUN sudo -u user mkdir -p /home/user/shared/
 
 ADD run.sh /home/user/
