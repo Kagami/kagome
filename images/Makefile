@@ -3,7 +3,7 @@ DOCKER_BUILD=sudo -u "$(DOCKER_USER)" docker build
 DOCKER_IMAGES=sudo -u "$(DOCKER_USER)" docker images
 DOCKER_PULL=sudo -u "$(DOCKER_USER)" docker pull
 DOCKER_RMI=sudo -u "$(DOCKER_USER)" docker rmi
-IMAGES=base cli-base cli gui-base gui gui-nonfree
+IMAGES=base cli-base cli gui-base gui gui-nonfree bitmessage
 .PHONY: $(IMAGES)
 
 default:
