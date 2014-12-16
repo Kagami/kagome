@@ -1,0 +1,19 @@
+<applications xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <application class="Firefox" role="browser">
+    <maximized>yes</maximized>
+    <decor>no</decor>
+  </application>
+  <application class="Thunderbird" role="3pane">
+    <maximized>yes</maximized>
+    <decor>no</decor>
+  </application>
+  <application class="Gajim" role="roster">
+    <maximized>yes</maximized>
+    <decor>no</decor>
+  </application>
+  <application class="Transmission-gtk" role="tr-main">
+    <maximized>yes</maximized>
+    <decor>no</decor>
+  </application>
+  <xi:include href="extra-app.xml" />
+</applications>
