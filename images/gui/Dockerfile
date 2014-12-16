@@ -1,6 +1,6 @@
 FROM gui-base
 
-ENV DISPLAY :0
+RUN echo 'export DISPLAY=:0' >> /home/user/.profile
 RUN mkdir /tmp/.X11-unix
 
 RUN sudo -u user mkdir -p /home/user/.config/openbox/
