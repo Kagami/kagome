@@ -1,7 +1,10 @@
 FROM gui-base
 
 RUN echo 'export DISPLAY=:0' >> /home/user/.profile
-RUN mkdir /tmp/.X11-unix
+RUN echo 'export GTK_IM_MODULE=xim' >> /home/user/.profile
+RUN echo 'export QT_IM_MODULE=xim' >> /home/user/.profile
+ADD .XCompose /home/user/
+RUN mkdir /tmp/.X11-unix/
 
 RUN sudo -u user mkdir -p /home/user/.config/openbox/
 ADD *.xml /home/user/.config/openbox/

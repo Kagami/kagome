@@ -1,0 +1,6 @@
+include "%L"
+
+<Multi_key> <apostrophe> <apostrophe> : "́"
+<Multi_key> <equal> <greater> : "⇒"
+<Multi_key> "t" "m" : "™"
+<Multi_key> "8" "8" : "∞"
