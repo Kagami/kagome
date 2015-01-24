@@ -12,6 +12,6 @@ RUN gpasswd -a user sudo
 RUN sed -i 's/^UMASK.*/UMASK 077/;s/^USERGROUPS_ENAB.*/USERGROUPS_ENAB no/' /etc/login.defs
 RUN echo 'Defaults umask=0777' > /etc/sudoers.d/umask && chmod 440 /etc/sudoers.d/umask
 
-RUN sed -r -i 's#http://archive\.ubuntu\.com/ubuntu/ (trusty|trusty-updates|trusty-backports) #mirror://mirrors.ubuntu.com/mirrors.txt \1 #;s#universe#universe multiverse#' /etc/apt/sources.list
+RUN sed -r -i 's#http://archive\.ubuntu\.com/ubuntu/ (trusty|trusty-updates|trusty-backports) #mirror://mirrors.ubuntu.com/mirrors.txt \1 #' /etc/apt/sources.list
 RUN apt-get update && apt-get dist-upgrade -y
 RUN apt-get install -y pwgen wget
