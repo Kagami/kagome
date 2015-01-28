@@ -15,5 +15,9 @@
     <maximized>yes</maximized>
     <decor>no</decor>
   </application>
+  <application class="Chromium-browser" role="browser">
+    <maximized>yes</maximized>
+    <decor>no</decor>
+  </application>
   <xi:include href="extra-app.xml" />
 </applications>
