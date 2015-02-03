@@ -14,7 +14,7 @@ Well, it's true that Linux isn't the most popular desktop operating system. Thou
 
 By the way do you now what in Linux:
 * Almost every major browser update contains a lot of security issues fixes (read the changelog)
-* This is not a big deal to have remote code execution issues in such programs as Adobe Flash and Oracle Java (google it)
+* This is not a big deal to have remote code execution issues in such programs as [Adobe Flash](http://www.cvedetails.com/product/6761/Adobe-Flash-Player.html?vendor_id=53) and Java browser plugin
 * Even if you regularly update your system can you say what criminals do with their exploits *before* you've installed the fix?
 * You're in a big risk if you run browser (or other untrustworthy program) from the same user as other programs and in the same X server (and I'm sure you are) because:
   * Owner of the remote code exploit for browser will have access to all your files
