@@ -20,4 +20,4 @@ clean:
 build-all: $(IMAGES)
 
 $(IMAGES):
-	cd "$@" && $(DOCKER_BUILD) --no-cache --force-rm -t "$@" .
+	cd "$@" && $(DOCKER_BUILD) --no-cache --force-rm -t "$@" "`pwd`"
