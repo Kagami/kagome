@@ -13,7 +13,7 @@ Indeed, why the hell someone should invent crazy methods to run programs? Err, d
 Well, it's true that Linux isn't the most popular desktop operating system. Though it *does have* viruses and there are a lof of blackhats who regularly search security holes in Linux programs. Even if their attack will not target just you, you still be nice link of huge botnet chain.
 
 By the way do you now what in Linux:
-* Almost every major browser update contains a lot of security issues fixes (read the changelog)
+* Almost every major browser update contains a [lot of security issues fixes](https://www.mozilla.org/en-US/security/known-vulnerabilities/firefox/)
 * This is not a big deal to have remote code execution issues in such programs as [Adobe Flash](http://www.cvedetails.com/product/6761/Adobe-Flash-Player.html?vendor_id=53) and Java browser plugin
 * Even if you regularly update your system can you say what criminals do with their exploits *before* you've installed the fix?
 * You're in a big risk if you run browser (or other untrustworthy program) from the same user as other programs and in the same X server (and I'm sure you are) because:
