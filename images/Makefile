@@ -1,6 +1,6 @@
 DOCKER_USER?=kagome
 DOCKER_BUILD=sudo -u "$(DOCKER_USER)" docker build
-DOCKER_IMAGES=sudo -u "$(DOCKER_USER)" docker images
+DOCKER_IMAGES=sudo -u "$(DOCKER_USER)" docker images -a
 DOCKER_PULL=sudo -u "$(DOCKER_USER)" docker pull
 DOCKER_RMI=sudo -u "$(DOCKER_USER)" docker rmi
 IMAGES=base cli-base cli gui-base gui bitmessage
@@ -9,7 +9,7 @@ IMAGES=base cli-base cli gui-base gui bitmessage
 default:
 	@echo "Run \`make all' to build all images."
 
-all: update-base clean build-all
+all: update-base build-all clean
 
 update-base:
 	$(DOCKER_PULL) ubuntu:latest
