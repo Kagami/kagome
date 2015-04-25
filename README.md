@@ -44,7 +44,7 @@ In many ways `subuser` very similar to `kagome` but has some design flaws:
 * Uses same X server for running GUI programs
 * Has very dangerous options enabled by default (e.g. inherit-working-directory)
 * Doesn't use user namespaces
-* Doesn't warn you what adding user to the docker group is [rather dangerous](https://docs.docker.com/articles/security/#docker-daemon-attack-surface)
+* Doesn't warn you what adding user to the docker group is [rather dangerous](https://docs.docker.com/articles/security/#docker-daemon-attack-surface) (i.e. [any user in docker group = root](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host))
 
 So despite the fact what `subuser` is more user-friendly for the end user it doesn't make your life much easier.
 
