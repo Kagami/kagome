@@ -98,6 +98,16 @@ Possible security flaws (see also TODO section):
 
 *TODO*: Graphical overview.
 
+#### UPDATE on 2015-06-02
+
+**Docker flaws:**
+* Still [no user namespaces](https://github.com/docker/docker/issues/7906)
+* Still [no safe way to run from user](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)
+* [Poor security defaults](https://blog.sandstorm.io/news/2014-08-13-sandbox-security.html)
+* docker pull [can break](https://opensource.com/business/14/12/steps-to-initiate-docker-pull) the host system
+
+Seems like choice of Docker was poor: they haven't improved security since the 1.0 release and probably won't do it in near future. There are few new projects in lightweight container area like [rkt](https://coreos.com/blog/rocket/), [LXD](http://www.ubuntu.com/cloud/tools/lxd), [systemd-nspawn](http://www.freedesktop.org/software/systemd/man/systemd-nspawn.html) and they should be considered instead of Docker. See also [this issue](https://github.com/Kagami/kagome/issues/4) for additional info.
+
 ### Usage
 
 1. Install the tmux, Xephyr and Docker.
