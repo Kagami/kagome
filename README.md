@@ -40,13 +40,7 @@ The main concept of `kagome` is to run all your applications in separate lightwe
 
 ##### [subuser](https://github.com/subuser-security/subuser)
 
-In many ways `subuser` very similar to `kagome` but has some design flaws:
-* Uses same X server for running GUI programs
-* Has very dangerous options enabled by default (e.g. inherit-working-directory)
-* Doesn't use user namespaces
-* Doesn't warn you what adding user to the docker group is [rather dangerous](https://docs.docker.com/articles/security/#docker-daemon-attack-surface) (i.e. [any user in docker group = root](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host))
-
-So despite the fact what `subuser` is more user-friendly for the end user it doesn't make your life much easier.
+In many ways `subuser` very similar to `kagome`. It solves the GUI isolation problem with [Xpra X11 bridge](http://subuser.org/news/0.3.html).
 
 ##### Well-tuned [MAC](https://en.wikipedia.org/wiki/Mandatory_access_control) ([SELinux](http://selinuxproject.org/page/Main_Page)/[AppArmor](http://wiki.apparmor.net/index.php/Main_Page)) or [DAC](https://en.wikipedia.org/wiki/Discretionary_access_control)
 
